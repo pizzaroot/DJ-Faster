@@ -1,6 +1,9 @@
 # DJ Faster
 make osu!mania beatmaps faster
 
+# Example
+https://osu.ppy.sh/beatmapsets/2469882#mania/5409729
+
 # Setup
 1. Install & Run Audacity
 2. Press Ctrl+P and go to "Interface" and make sure that "Language: English"
