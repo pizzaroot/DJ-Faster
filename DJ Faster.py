@@ -71,6 +71,10 @@ for line in f.readlines():
         if not tmp[1].startswith('-'):
             timingpoints.append([int(tmp[0]), float(tmp[1])])
             tmp[1] = str(float(tmp[1]) / get_rate_at(int(tmp[0])))
+        elif len(timingpoints) > 0:
+            tmp[1] = str(-100 * timingpoints[0][1] / timingpoints[-1][1] * get_rate_at(int(tmp[0])) / r0)
+        else:
+            tmp[1] = str(-100 * get_rate_at(int(tmp[0])) / r0) 
         tmp[0] = str(get(int(tmp[0])))
         dap2 += ",".join(tmp)
     else:
@@ -100,7 +104,7 @@ while curtime < T_input * 1000:
     if nxtidx >= len(timingpoints) or curtime + curinterval < timingpoints[nxtidx][0]:
         curtime += curinterval
         dap += str(int(get(curtime))) + ',' + str(curinterval / get_rate_at(curtime)) + ",4,2,1,100,1,0\n"
-        dap += str(int(get(curtime))) + ',' + str(-100 * get_rate_at(curtime)) + ",4,2,1,100,0,0\n"
+        dap += str(int(get(curtime))) + ',' + str(-100 * timingpoints[0][1] / curinterval * get_rate_at(curtime) / r0) + ",4,2,1,100,0,0\n"
     else:
         curtime = timingpoints[nxtidx][0]
         curinterval = timingpoints[nxtidx][1]
