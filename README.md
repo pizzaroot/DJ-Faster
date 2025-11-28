@@ -26,3 +26,6 @@ https://osu.ppy.sh/beatmapsets/2469882#mania/5409729
 - 100 for x2.0
 8. Wait until audacity finishes.
 9. Done!
+
+# Note
+This tool will convert SV map to a non-SV map.
